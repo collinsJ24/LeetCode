@@ -1,9 +1,6 @@
 package com.leetcode.practise.questions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class MedianTwoArrays {
 
@@ -49,11 +46,24 @@ public class MedianTwoArrays {
 
     }
 
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String,List<String>>map=new HashMap<>();
+        for(String s:strs) {
+            char[] temp = s.toCharArray();
+            Arrays.sort(temp);
+            String key=new String(temp);
+            map.putIfAbsent(key,new ArrayList<>());
+            map.get(key).add(s);
+        }
+        return new ArrayList<>(map.values());
+    }
+
     public static void main(String []args) {
         MedianTwoArrays ma = new MedianTwoArrays();
         int[] candidates = new int[] { 1,2};
         int[] candidates2 = new int[] {3,4};
-        System.out.println(ma.findMedianSortedArrays(candidates, candidates2));
+        String[] words = new String[] {"eat","tea","tan","ate","nat","bat"};
+        System.out.println(ma.groupAnagrams(words));
 
 
     }
